@@ -1,0 +1,18 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    crack (0.1.8)
+    haml (3.0.25)
+    httparty (0.7.4)
+      crack (= 0.1.8)
+    rack (1.2.1)
+    sinatra (1.0)
+      rack (>= 1.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  haml
+  httparty
+  sinatra
