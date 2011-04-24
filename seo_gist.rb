@@ -130,11 +130,10 @@ __END__
     = yield
 
 @@index
-%span.form
-  %form{:action => '/'}
-    %label{for:'gist_id'} Gist ID
-    %input{type:'text', id:'gist_id', name:'gist_id', value:@id}
-    %input{type:'submit', value:'Generate'}
+%form{:action => '/'}
+  %label{for:'gist_id'} Gist ID
+  %input{type:'text', id:'gist_id', name:'gist_id', value:@id}
+  %input{type:'submit', value:'Generate'}
 - if @gist
   - unless @gist.empty?
     %h2 Embed Code
