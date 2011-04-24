@@ -142,7 +142,7 @@ __END__
     %a{id:'select', href:'#'} Select Embed Code
     %pre#embed
       = escape_html(@gist.script)
-      = preserve "\n\n&lt;noscript>\n"+escape_html(@gist.raw)+"\n&lt;/noscript>"
+      = preserve "\n\n&lt;noscript>\n"+escape_html(escape_html(@gist.raw))+"\n&lt;/noscript>"
     %h2 Gist Preview
     = @gist.script
   - else
