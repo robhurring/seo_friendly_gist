@@ -37,9 +37,9 @@ class FriendlyGist
 private
   def get_raw
     return nil unless @data
-    @data['files'].inject('') do |r, f|
-      r + "File: %s\n%s\n\n%s\n\n" % [f, ('-' * (6 + f.length)), get_raw_data(f)]
-    end
+    @data['files'].inject([]) do |r, f|
+      r << "File: %s\n%s\n\n%s" % [f, ('-' * (6 + f.length)), get_raw_data(f)]
+    end.join("\n\n")
   end
   
   def get_raw_data(file)
