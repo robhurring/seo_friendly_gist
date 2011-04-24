@@ -90,6 +90,8 @@ __END__
       	  }
       	a{color:#82A51B;font-weight:bold;}
       	small{display:block;color:#999}
+        .footer{border-top:1px solid #333;color:#444;margin:40px 0 20px;padding:10px 0 0;font-size:12px;text-align:right}
+        .footer a{color:#555;font-weight:normal}
     %script{src:'https://www.google.com/jsapi', type:'text/javascript'}
     :javascript
       google.load('jquery', '1');
@@ -140,5 +142,8 @@ __END__
     = preserve "\n\n&lt;noscript>\n"+escape_html(@gist.raw)+"\n&lt;/noscript>"
   %h2 Gist Preview
   = @gist.script
+%div.footer
+  Created by  
+  %a{href:'http://proccli.com'}Rob Hurring
 %a{href:"http://github.com/robhurring/seo_friendly_gist"}
-  %img{style:"position: absolute; top: 0; right: 0; border: 0;", src:"https://d3nwyuy0nl342s.cloudfront.net/img/30f550e0d38ceb6ef5b81500c64d970b7fb0f028/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67", alt:"Fork me on GitHub"}
+  %img{style:"position: absolute; top: 0; right: 0; border: 0;", src:"https://d3nwyuy0nl342s.cloudfront.net/img/30f550e0d38ceb6ef5b81500c64d970b7fb0f028/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67", alt:"Fork me on GitHub"}  
