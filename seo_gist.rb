@@ -9,10 +9,8 @@ class SEOGist < Sinatra::Base
   end
   
   get '/' do
-    @id = params[:gist_id]
-    if @id && !@id.empty?
-      @gist = FriendlyGist.new(@id)
-    end
+    @gist_id = params[:gist_id]
+    @gist = FriendlyGist.new(@gist_id) unless @gist_id.nil? || @gist_id.empty?
     haml :index
   end
 end
@@ -132,7 +130,7 @@ __END__
 @@index
 %form{:action => '/'}
   %label{for:'gist_id'} Gist ID
-  %input{type:'text', id:'gist_id', name:'gist_id', value:@id}
+  %input{type:'text', id:'gist_id', name:'gist_id', value:@gist_id}
   %input{type:'submit', value:'Generate'}
 - if @gist
   - unless @gist.empty?
@@ -146,7 +144,7 @@ __END__
     %h2 Gist Preview
     = @gist.script
   - else
-    %pre= %{No gist found with id: %s} % @id
+    %pre= %{No gist found with id: %s} % @gist_id
 %div.footer
   Created by  
   %a{href:'http://proccli.com'}Rob Hurring
