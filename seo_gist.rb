@@ -31,6 +31,9 @@ class FriendlyGist
     @raw = get_raw
   end
 
+  def empty?
+    @data.nil? || @data.empty?
+  end
 private
   def get_raw
     return nil unless @data
@@ -133,15 +136,18 @@ __END__
     %input{type:'text', id:'gist_id', name:'gist_id', value:@id}
     %input{type:'submit', value:'Generate'}
 - if @gist
-  %h2 Embed Code
-  %small= %{Owner: %s} % @gist.data['owner']
-  %small= %{Description: %s} % (@gist.data['description'] || 'n/a')
-  %a{id:'select', href:'#'} Select Embed Code
-  %pre#embed
-    = escape_html(@gist.script)
-    = preserve "\n\n&lt;noscript>\n"+escape_html(@gist.raw)+"\n&lt;/noscript>"
-  %h2 Gist Preview
-  = @gist.script
+  - unless @gist.empty?
+    %h2 Embed Code
+    %small= %{Owner: %s} % @gist.data['owner']
+    %small= %{Description: %s} % (@gist.data['description'] || 'n/a')
+    %a{id:'select', href:'#'} Select Embed Code
+    %pre#embed
+      = escape_html(@gist.script)
+      = preserve "\n\n&lt;noscript>\n"+escape_html(@gist.raw)+"\n&lt;/noscript>"
+    %h2 Gist Preview
+    = @gist.script
+  - else
+    %pre= %{No gist found with id: %s} % @id
 %div.footer
   Created by  
   %a{href:'http://proccli.com'}Rob Hurring
