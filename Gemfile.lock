@@ -6,6 +6,8 @@ GEM
     httparty (0.7.4)
       crack (= 0.1.8)
     rack (1.2.1)
+    shotgun (0.9)
+      rack (>= 1.0)
     sinatra (1.0)
       rack (>= 1.0)
 
@@ -15,4 +17,5 @@ PLATFORMS
 DEPENDENCIES
   haml
   httparty
+  shotgun
   sinatra

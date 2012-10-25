@@ -1,13 +1,16 @@
-require "bundler"
+require 'bundler'
+require 'yaml'
+YAML::ENGINE.yamler = 'syck'
+
 Bundler.require
 
 class SEOGist < Sinatra::Base
   enable :inline_templates
-  
+
   helpers do
     include Rack::Utils
   end
-  
+
   get '/' do
     @gist_id = params[:gist_id]
     @gist = FriendlyGist.new(@gist_id) unless @gist_id.nil? || @gist_id.empty?
