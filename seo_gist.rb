@@ -24,7 +24,7 @@ class FriendlyGist
   base_uri 'https://gist.github.com'
 
   attr_reader :id, :data, :script, :raw
-  
+
   def initialize(id)
     @id = id
     @script = ScriptInclude % id
@@ -38,16 +38,16 @@ class FriendlyGist
 private
   def get_raw
     return nil unless @data
-    @data['files'].inject([]) do |r, f|
+    @data['files'].reduce([]) do |r, f|
       r << "File: %s\n%s\n\n%s" % [f, ('-' * (6 + f.length)), get_raw_data(f)]
     end.join("\n\n")
   end
-  
+
   def get_raw_data(file)
     r = self.class.get '/raw/%s/%s' % [@id, Rack::Utils.escape(file)]
     r.ok? ? r : ''
   end
-  
+
   def get_gist
     r = self.class.get '/%s.json' % @id
     r.ok? ? r : nil
@@ -64,7 +64,7 @@ __END__
         padding:0;
       	font:14px/18px "Lucida Grande", verdana, arial, helvetica, sans-serif;
       	color:#222;
-      	background-color:#222;        
+      	background-color:#222;
         }
       h1,h2{
       	letter-spacing:-0.07em;
@@ -118,7 +118,7 @@ __END__
           selection.setBaseAndExtent(text, 0, text, 1);
         }
       }
-      $(document).ready(function(){ 
+      $(document).ready(function(){
         $('#select').click(function(e){
           SelectText('embed');
           e.preventDefault();
@@ -151,13 +151,13 @@ __END__
     %a{id:'select', href:'#'} Select Embed Code
     %pre#embed
       = escape_html(@gist.script)
-      = preserve "\n\n&lt;noscript>\n"+escape_html(escape_html(@gist.raw))+"\n&lt;/noscript>"
+      = preserve "\n\n&lt;noscript>&lt;pre>\n"+escape_html(escape_html(@gist.raw))+"\n&lt;/pre>&lt;/noscript>"
     %h2 Gist Preview
     = @gist.script
   - else
     %pre= %{No gist found with id: %s} % @gist_id
 %div.footer
-  Created by  
+  Created by
   %a{href:'http://proccli.com'}Rob Hurring
 %a{href:"http://github.com/robhurring/seo_friendly_gist"}
-  %img{style:"position: absolute; top: 0; right: 0; border: 0;", src:"https://d3nwyuy0nl342s.cloudfront.net/img/30f550e0d38ceb6ef5b81500c64d970b7fb0f028/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67", alt:"Fork me on GitHub"}  
+  %img{style:"position: absolute; top: 0; right: 0; border: 0;", src:"https://d3nwyuy0nl342s.cloudfront.net/img/30f550e0d38ceb6ef5b81500c64d970b7fb0f028/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67", alt:"Fork me on GitHub"}
